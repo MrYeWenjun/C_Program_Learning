@@ -32,10 +32,27 @@ void Delete( ElementType X, List L )
 
 }
 
-Position FindPrevious( ElementType X, List L );
+/*
+
+ */
+Position FindPrevious( ElementType X, List L )
+{
+    Position P;
+    P = L;
+    while( P->Next != NULL && P->Next->Element != X )
+        P = P->Next;
+    return P;
+}
+
 void Inser( ElementType X, List L, Position P );
 void DeleteList( List L );
 Position Header( List L );
 Position First( List L );
 Position Advance( Position P );
 ElementType Retrieve( Position P );
+
+int main( void )
+{
+
+    return 0;
+}
