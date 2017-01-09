@@ -20,6 +20,11 @@ Position First( List L );
 Position Advance( Position P );
 ElementType Retrieve( Position P );
 
+/*
+Add some functions.
+*/
+void InitList( ElementType X, List L );
+void ShowList( List L );
 #endif // _LIST_H_
 
 
