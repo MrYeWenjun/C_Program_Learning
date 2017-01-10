@@ -13,7 +13,7 @@ int IsLast( Position P, List L );
 Position Find( ElementType X, List L );
 void Delete( ElementType X, List L );
 Position FindPrevious( ElementType X, List L );
-void Inser( ElementType X, List L, Position P );
+void Insert( ElementType X, List L, Position P );
 void DeleteList( List L );
 Position Header( List L );
 Position First( List L );
@@ -23,8 +23,10 @@ ElementType Retrieve( Position P );
 /*
 Add some functions.
 */
-void InitList( ElementType X, List L );
+List InitList( ElementType X, List L );
 void ShowList( List L );
+void AddElement( ElementType X, List L );
+List Inverse( List L );
 #endif // _LIST_H_
 
 

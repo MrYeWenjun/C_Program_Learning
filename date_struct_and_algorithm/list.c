@@ -12,15 +12,14 @@ List MakeEmpty( List L )
 {
     if( L != NULL )
         DeleteList( L );
-    L = ( List ) malloc( sizeof( List ) );
-    L->Next = NULL;
+    L = NULL;
     printf("MakeEmpty success.\n");
     return L;
 }
 
 int IsEmpty( List L )
 {
-    return L->Next == NULL;
+    return L == NULL;
 }
 
 int IsLast( Position P, List L )
@@ -58,6 +57,8 @@ Position FindPrevious( ElementType X, List L )
     return P;
 }
 
+
+//在P节点后面插入
 void Insert( ElementType X, List L, Position P )
 {
     Position TmpCell;
@@ -78,6 +79,7 @@ void DeleteList( List L )
         free( P );
         P = TmpCell;
     }
+
 }
 
 Position Header( List L )
@@ -100,15 +102,18 @@ ElementType Retrieve( Position P )
     return P->Element;
 }
 
-void InitList( ElementType X, List L )
+List InitList( ElementType X, List L )
 {
     if( IsEmpty( L ) )
     {
+        L = ( Position )malloc( sizeof( Position ) );
         L->Element = X;
+        L->Next = NULL;
         printf("Initialize list success\n");
     }
     else
         printf("List is not empty, Initialize false\n");
+    return L;
 }
 
 void ShowList( List L )
@@ -118,24 +123,72 @@ void ShowList( List L )
     Position TmpCell = L;
     while( TmpCell != NULL)
     {
-        printf("%d\n", TmpCell->Element);
+        printf("%d", TmpCell->Element);
+        if( !IsLast( TmpCell, L ) )
+            printf("->");
         TmpCell = TmpCell->Next;
     }
+    printf("\n");
+}
+
+void AddElement( ElementType X, List L )
+{
+    Position LastNode = L;
+    while( LastNode->Next != NULL )
+        LastNode = LastNode->Next;
+    Position TmpCell = ( Position )malloc( sizeof( Position ) );
+    TmpCell->Element = X;
+    TmpCell->Next = NULL;
+    LastNode->Next = TmpCell;
+}
+
+List Inverse( List L )
+{
+    List P1 = Header( L );
+    List P2 = P1->Next;
+    List P3 = NULL;
+    while( P2 != NULL )
+    {
+        P3 = P2->Next;
+        P2->Next = P1;
+        P1 = P2;
+        P2 = P3;
+    }
+    Header( L )->Next = NULL;
+    return P1;
 }
 
 int main( void )
 {
     List L = NULL;
     L = MakeEmpty( L );
-    printf("%d\n", L->Element);
 
     int Is = IsEmpty( L );
-    printf("%d( 1:Empty, 0:NoEmpty)\n", Is);
+    printf("List is %s\n", Is?"Empty":"NoEmpty");
 
-    InitList( 10, L );
+    L = InitList( 10, L );
+
     Insert( 20, L, Header( L ) );
     Insert( 30, L, Find( 20, L ) );
     Insert( 40, L, Header( L ) );
+    AddElement( 50, L);
+    AddElement( 20, L );
+    ShowList( L );
+
+    Position FindElement = Find( 20, L );
+    printf("查找元素:20\n");
+    ShowList( FindElement );
+
+    Delete( 20, L );
+    printf("删除元素：20\n");
+    ShowList( L );
+
+    printf("翻转链表\n");
+    List InverseL = Inverse( L );
+    ShowList( InverseL );
+
+    L = MakeEmpty( L );
+    printf("删除链表\n");
     ShowList( L );
     return 0;
 }
