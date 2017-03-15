@@ -1,0 +1,6 @@
+# ignore codeblocks projects
+/bin
+/obj
+*.cbp
+*.depend
+*.layout
