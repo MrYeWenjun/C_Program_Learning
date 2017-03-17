@@ -1,8 +1,8 @@
+#include "element.h"
 #ifndef _Tree_H
 #define _Tree_H
 
 struct TreeNode;
-typedef int ElementType;
 typedef struct TreeNode * Position;
 typedef struct TreeNode * SearchTree;
 
@@ -12,7 +12,7 @@ Position FindMax( SearchTree T );
 Position FindMin( SearchTree T );
 SearchTree Insert( ElementType X, SearchTree T );
 SearchTree Delete( ElementType X, SearchTree T );
-ElementType Retrieve( PositionP );
+ElementType Retrieve( Position P );
 
 //add some functions
 void ShowTree( SearchTree T );
