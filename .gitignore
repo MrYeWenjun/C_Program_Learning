@@ -1,6 +1,6 @@
 # ignore codeblocks projects
-/bin
-/obj
+/date_struct_and_algorithm/bin
+/date_struct_and_algorithm/obj
 *.o
 *.exe
 *.cbp
