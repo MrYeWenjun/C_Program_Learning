@@ -1,0 +1,10 @@
+# ignore codeblocks projects
+/bin
+/obj
+*.o
+*.exe
+*.cbp
+*.depend
+*.layout
+test.[ch]
+*/*test
