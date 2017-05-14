@@ -39,12 +39,12 @@ int main( void )
 {
     int a[2][3] = {{10, 11, 12}, {13, 14, 15}};
 
-    printf("row of a = %d\n",sizeof(a) / sizeof(a[0]));
-    printf("col of a = %d\n",sizeof(a[0]) / sizeof(int));
+    printf("row of a = %zu\n",sizeof(a) / sizeof(a[0]));
+    printf("col of a = %lu\n",sizeof(a[0]) / sizeof(int));
 
-    printf("sizeof(a) = %d\n", sizeof(a));
-    printf("sizeof(a[0]) = %d\n", sizeof(a[0]));
-    printf("sizeof(a[0][0]) = %d\n", sizeof(a[0][0]));
+    printf("sizeof(a) = %lu\n", sizeof(a));
+    printf("sizeof(a[0]) = %lu\n", sizeof(a[0]));
+    printf("sizeof(a[0][0]) = %lu\n", sizeof(a[0][0]));
 
     printf("a = %p\n", a);
     printf("&a = %p\n", &a);
@@ -53,8 +53,8 @@ int main( void )
     printf("&a[0][1] = %p\n", &a[0][1]);
 
     int *p = a[0];
-    printf("sizeof(p) = %d\n", sizeof(p));
-    printf("sizeof(p[0]) = %d\n", sizeof(p[0]));
+    printf("sizeof(p) = %lu\n", sizeof(p));
+    printf("sizeof(p[0]) = %lu\n", sizeof(p[0]));
     int i, j;
     for(i = 0; i < 6; i++)
     {
@@ -63,7 +63,7 @@ int main( void )
     }
 
     int (*p1)[3];
-    printf("sizeof(p1) = %d\n", sizeof(p1));
+    printf("sizeof(p1) = %lu\n", sizeof(p1));
     p1 = a;
     for(i = 0; i < 2; i++)
         for(j = 0; j < 3; j++)
@@ -76,10 +76,10 @@ int main( void )
     p2 = (int **) malloc(sizeof(int *) * 2);
     for(i = 0; i < 2; i++)
         p2[i] = (int *) malloc(sizeof(int) * 3);
-    printf("sizeof(p2) = %d\n", sizeof(p2));
-    printf("sizeof(p2[0]) = %d\n", sizeof(p2[0]));
-    printf("row of p2 = %d\n",sizeof(p2) / sizeof(p2[0]));
-    printf("col of p2 = %d\n",sizeof(p2[0]) / sizeof(int));
+    printf("sizeof(p2) = %lu\n", sizeof(p2));
+    printf("sizeof(p2[0]) = %lu\n", sizeof(p2[0]));
+    printf("row of p2 = %lu\n",sizeof(p2) / sizeof(p2[0]));
+    printf("col of p2 = %lu\n",sizeof(p2[0]) / sizeof(int));
 
     modify_array(p2, 2, 3);
     for(i = 0; i < 2; i++)
@@ -98,5 +98,5 @@ int main( void )
     int num;
     modify_point(&num);
     printf("*p = %d\n", num);
-    return 0;
+	return 0;
 }
