@@ -49,10 +49,11 @@ void show_nums(int* nums, int nums_size)
 }
 int main ()
 {
-	int nums[] = {2, 5, 1, 10, 8, 2, 6, 8, 1, 3};
+	int nums[] = {3, 1, 4,1};
 	int nums_size = LENGTH(nums);
+	printf("nums_size = %d\n", nums_size);
 	show_nums(nums, nums_size);
-	quick_sort(nums, 0, nums_size);
+	quick_sort(nums, 0, nums_size - 1);
 	show_nums(nums, nums_size);
     return 0;
 }
