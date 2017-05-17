@@ -1,7 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define LENGTH(x) (sizeof(x) / sizeof(x[0]))
-
+int cmp(const void* a, const void* b){
+    return *(int*)a - *(int*)b;
+}
+/**
+*自己写的quick_sort
+*/
 int partition(int* nums, int low, int high)
 {
 	int key = nums[low];
@@ -30,6 +36,7 @@ int partition(int* nums, int low, int high)
 
 void quick_sort(int* nums, int start, int stop)
 {
+
 	int position;
 	if(start < stop)
 	{
@@ -38,8 +45,10 @@ void quick_sort(int* nums, int start, int stop)
 		quick_sort(nums , position + 1, stop);
 	}
 }
+/*
 int findPairs(int* nums, int numsSize, int k) {
-	quick_sort(nums, 0, numsSize - 1);
+	//quick_sort(nums, 0, numsSize - 1);
+	qsort(nums, numsSize, sizeof(nums[0]), cmp);
 	int i, j, cnt;
 	cnt = 0;
 	for(i = 0; i < numsSize; i++)
@@ -56,11 +65,11 @@ int findPairs(int* nums, int numsSize, int k) {
 			{
 				j++;
 			}
-			while(nums[j + 1] == nums[j])	
+			while(nums[j] == nums[j - 1])
 			{
 				j++;
 			}
-			
+
 		}
 		while(nums[i + 1] == nums[i])
 		{
@@ -70,7 +79,7 @@ int findPairs(int* nums, int numsSize, int k) {
 
 	return cnt;
 }
-
+*/
 int main(void)
 {
 	int nums[] = {1, 1, 1, 1, 1};
@@ -82,13 +91,13 @@ int main(void)
 		printf("%3d",nums[i]);
 	}
 	printf("\n");
-	quick_sort(nums, 0, numsSize);
-	for(i = 0; i < numsSize; i++)
+
+	printf("%d\n", findPairs(nums, numsSize, k));
+
+		for(i = 0; i < numsSize; i++)
 	{
 		printf("%3d",nums[i]);
 	}
 	printf("\n");
-
-	printf("%d\n", findPairs(nums, numsSize, k));
 	return 0;
 }
