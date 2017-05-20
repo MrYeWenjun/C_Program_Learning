@@ -22,50 +22,36 @@ void print_array(int* nums, int nums_size)
     printf("\n");
 }
 
-int* findDisappearedNumbers(int* nums, int numsSize, int* returnSize)
-{
+/**
+ * Return an array of size *returnSize.
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* findDuplicates(int* nums, int numsSize, int* returnSize) {
     int* return_ptr = malloc(sizeof(int) * numsSize);
-    *returnSize = 0;
     int i;
-    for(i = 0; i < numsSize; i++)
-    {
-        while(nums[i] > 0 && nums[i] != i + 1)
-        {
-            if(nums[i] == nums[nums[i] - 1])
-            {
-                nums[i] = 0;
-                break;
-            }
-            else
-            {
-                swap(&nums[i], &nums[nums[i] - 1]);
-            }
-        }
-    }
-
-    //print_array(nums, numsSize);
-
-    for(i = 0; i < numsSize; i++)
-    {
-
-        if(nums[i] == 0)
-        {
-            return_ptr[*returnSize] = i + 1;
+    *returnSize = 0;
+    for(i = 0; i < numsSize; i++){
+        if(nums[abs(nums[i]) - 1] < 0){
+            return_ptr[*returnSize] = abs(nums[i]);
             *returnSize += 1;
+        }else{
+            nums[abs(nums[i]) - 1] = -nums[abs(nums[i]) - 1];
+
         }
     }
-
     return return_ptr;
 }
 
 int main(void)
 {
 
-    int nums[] = {3, 3, 2, 7, 8, 2, 3, 1};
+    int nums[] = {4, 3, 2, 7, 8, 2, 3, 1};
     int nums_size = sizeof(nums) / sizeof(nums[0]);
     int* return_size = malloc(sizeof(int));
-    int* return_ptr = findDisappearedNumbers(nums, nums_size, return_size);
+    int* return_ptr = findDuplicates(nums, nums_size, return_size);
     print_array(return_ptr, *return_size);
+    free(return_size);
+    free(return_ptr);
     /* test
     int a = 1;
     int b = 2;
